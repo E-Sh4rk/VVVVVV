@@ -10,7 +10,7 @@ void increment_speed_counter(){speed_counter++;}
 END_OF_FUNCTION(increment_speed_counter);
 
 string currentarea;
-PALLETE dummypal;
+PALETTE dummypal;
 BITMAP *buffer, *biggerbuffer, *page[3];
 BITMAP *tiles[4000];
 

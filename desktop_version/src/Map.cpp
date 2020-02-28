@@ -28,7 +28,7 @@ mapclass::mapclass()
 	finalmode = false;
 	finalstretch = false;
 	finalx = 50;
-	finaly = 50;
+	finally = 50;
 
 	cursorstate = 0;
 	cursordelay = 0;
@@ -947,20 +947,20 @@ void mapclass::gotoroom(int rx, int ry, Graphics& dwgfx, Game& game, entityclass
 		//Ok, what way are we moving?
 		/*if (rx - finalx >= 1) finalx++;
 		if (rx - finalx <= -1) finalx--;
-		if (ry - finaly >= 1) finaly++;
-		if (ry - finaly <= -1) finaly--;*/
+		if (ry - finally >= 1) finally++;
+		if (ry - finally <= -1) finally--;*/
 		finalx = rx;
-		finaly = ry;
+		finally = ry;
 		game.roomx = finalx;
-		game.roomy = finaly;
+		game.roomy = finally;
 		game.roomchange = true;
 		rx = finalx;
-		ry = finaly;
+		ry = finally;
 
 		if (game.roomy < 10)
 		{
 			game.roomy = 11;
-			finaly = 11;
+			finally = 11;
 		}
 
 		if(game.roomx>=41 && game.roomy>=48 && game.roomx<61 && game.roomy<68 )
@@ -1414,7 +1414,7 @@ void mapclass::loadlevel(int rx, int ry, Graphics& dwgfx, Game& game, entityclas
 		tileset = 0;
 		break;
 	case 6: //final level
-		tmap = finallevel.loadlevel(finalx, finaly, game, obj);
+		tmap = finallevel.loadlevel(finalx, finally, game, obj);
 		fillcontent(tmap);
 		roomname = finallevel.roomname;
 		tileset = 1;
@@ -1477,7 +1477,7 @@ void mapclass::loadlevel(int rx, int ry, Graphics& dwgfx, Game& game, entityclas
 		int i = obj.getplayer();
 		obj.entities[i].yp += (71 * 8);
 		game.roomy--;
-		finaly--;
+		finally--;
 
 		ypos = (100-29) * 8;
 		bypos = ypos/2;
@@ -1518,7 +1518,7 @@ void mapclass::loadlevel(int rx, int ry, Graphics& dwgfx, Game& game, entityclas
 		int i = obj.getplayer();
 		obj.entities[i].yp += (71 * 8);
 		game.roomy--;
-		finaly--;
+		finally--;
 
 		ypos = (100-29) * 8;
 		bypos = ypos/2;

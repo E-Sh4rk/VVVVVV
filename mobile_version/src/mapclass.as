@@ -16,7 +16,7 @@
 			showteleporters = false; showtargets = false; showtrinkets = false;
 			
 			finalmode = false; finalstretch = false;
-			finalx = 50; finaly = 50;
+			finalx = 50; finally = 50;
 			
 			cursorstate = 0; cursordelay = 0;
 			
@@ -650,14 +650,14 @@
 				//Ok, what way are we moving?
 				/*if (rx - finalx >= 1) finalx++;
 				if (rx - finalx <= -1) finalx--;
-				if (ry - finaly >= 1) finaly++;
-				if (ry - finaly <= -1) finaly--;*/
-				finalx = rx; finaly = ry;
-			  game.roomx = finalx; game.roomy = finaly; game.roomchange = true;
-				rx = finalx; ry = finaly;
+				if (ry - finally >= 1) finally++;
+				if (ry - finally <= -1) finally--;*/
+				finalx = rx; finally = ry;
+			  game.roomx = finalx; game.roomy = finally; game.roomchange = true;
+				rx = finalx; ry = finally;
 				
 				if (game.roomy < 10) {
-					game.roomy = 11; finaly = 11;
+					game.roomy = 11; finally = 11;
 				}
 				
 				if(game.roomx>=41 && game.roomy>=48 && game.roomx<61 && game.roomy<68 ){
@@ -980,7 +980,7 @@
 					tileset = 0;
 				break;
 				case 6: //final level
-				  finallevel.loadlevel(finalx, finaly, game, obj);
+				  finallevel.loadlevel(finalx, finally, game, obj);
           fillcontent();
 					roomname = finallevel.roomname;
 					tileset = 1; background = 3;
@@ -1027,7 +1027,7 @@
 					
 					i = obj.getplayer();
 					obj.entities[i].yp += (71 * 8);
-					game.roomy--; finaly--;
+					game.roomy--; finally--;
 					
 					ypos = (100-29) * 8;
 				  bypos = ypos/2;
@@ -1061,7 +1061,7 @@ obj.createentity(game, 72, 156, 11, 200);  // (horizontal gravity line)
 					
 					i = obj.getplayer();
 					obj.entities[i].yp += (71 * 8);
-					game.roomy--; finaly--;
+					game.roomy--; finally--;
 					
 					ypos = (100-29) * 8;
 				  bypos = ypos/2;
@@ -1566,7 +1566,7 @@ obj.createentity(game, 72, 156, 11, 200);  // (horizontal gravity line)
     public var customshowmm:Boolean;
 		
 		//final level navigation
-		public var finalx:int, finaly:int, finalmode:Boolean;
+		public var finalx:int, finally:int, finalmode:Boolean;
 		public var finalstretch:Boolean; //if true, disable screen warping and enable special background
 		
 		public var specialnames:Array = new Array();

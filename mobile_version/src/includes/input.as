@@ -1291,7 +1291,7 @@ public function gameinput(key:KeyPoll, dwgfx:dwgraphicsclass, game:gameclass, ma
 		}
 	}
 	
-	//Entity type 0 is player controled
+	//Entity type 0 is player controlled
 	for (i = 0; i < obj.nentity; i++) {
 	  if (obj.entities[i].rule == 0) {
 			if (game.hascontrol && game.deathseq == -1 && game.lifeseq <= 5) {

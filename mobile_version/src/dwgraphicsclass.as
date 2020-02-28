@@ -1373,7 +1373,7 @@
 						tpoint.x += 8; backbuffer.copyPixels(tiles[obj.entities[i].drawframe], tiles_rect, tpoint);
 					}else if (obj.entities[i].size == 3) { // Big chunky pixels!
 					  prect.x = obj.entities[i].xp; prect.y = obj.entities[i].yp-map.ypos;
-						//A seperate index of colours, for simplicity
+						//A separate index of colours, for simplicity
 						if(obj.entities[i].colour==1){
 						  backbuffer.fillRect(prect, RGB(196 - (Math.random() * 64), 10, 10));
 						}else if (obj.entities[i].colour == 2) {
@@ -2067,7 +2067,7 @@
 						}
 					}else if (obj.entities[i].size == 3) { // Big chunky pixels!
 					  prect.x = obj.entities[i].xp; prect.y = obj.entities[i].yp;
-						//A seperate index of colours, for simplicity
+						//A separate index of colours, for simplicity
 						if(obj.entities[i].colour==1){
 						  backbuffer.fillRect(prect, RGB(196 - (Math.random() * 64), 10, 10));
 						}else if (obj.entities[i].colour == 2) {

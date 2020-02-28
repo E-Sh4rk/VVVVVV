@@ -3736,7 +3736,7 @@
 		
 		public function hormovingplatformfix(t:int, map:mapclass):void{
 			//If this intersects the player, then we move the player along it
-			//for horizontal platforms, this is simplier
+			//for horizontal platforms, this is simpler
 		  createblock(0, entities[t].xp, entities[t].yp, entities[t].w, entities[t].h);
 			/*j = getplayer();
 			if (entitycollide(t, j)) {				

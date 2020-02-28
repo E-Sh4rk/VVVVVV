@@ -1,5 +1,5 @@
 string currentarea;
-PALLETE dummypal;
+PALETTE dummypal;
 BITMAP *buffer, *biggerbuffer, *page[3];
 BITMAP *worldmap;
 int state, gt;

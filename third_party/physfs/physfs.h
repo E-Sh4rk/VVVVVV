@@ -117,7 +117,7 @@
  *  isn't actually specified in the .zip file. Unlike the Unix mentality of
  *  mounting a filesystem, "mods/mymod" doesn't actually have to exist when
  *  mounting the zipfile. It's a "virtual" directory. The mounting mechanism
- *  allows the developer to seperate archives in the tree and avoid trampling
+ *  allows the developer to separate archives in the tree and avoid trampling
  *  over files when added new archives, such as including mod support in a
  *  game...keeping external content on a tight leash in this manner can be of
  *  utmost importance to some applications.
@@ -1143,7 +1143,7 @@ PHYSFS_DECL int PHYSFS_exists(const char *fname);
  * \deprecated As of PhysicsFS 2.1, use PHYSFS_stat() instead. This
  *             function just wraps it anyhow.
  *
- * Determine if the first occurence of (fname) in the search path is
+ * Determine if the first occurrence of (fname) in the search path is
  *  really a directory entry.
  *
  * Note that entries that are symlinks are ignored if
@@ -1166,7 +1166,7 @@ PHYSFS_DECL int PHYSFS_isDirectory(const char *fname) PHYSFS_DEPRECATED;
  * \deprecated As of PhysicsFS 2.1, use PHYSFS_stat() instead. This
  *             function just wraps it anyhow.
  *
- * Determine if the first occurence of (fname) in the search path is
+ * Determine if the first occurrence of (fname) in the search path is
  *  really a symbolic link.
  *
  * Note that entries that are symlinks are ignored if
@@ -2165,7 +2165,7 @@ PHYSFS_DECL int PHYSFS_setAllocator(const PHYSFS_Allocator *allocator);
  *  mountpoint.
  *
  * When you mount an archive, it is added to a virtual file system...all files
- *  in all of the archives are interpolated into a single hierachical file
+ *  in all of the archives are interpolated into a single hierarchical file
  *  tree. Two archives mounted at the same place (or an archive with files
  *  overlapping another mountpoint) may have overlapping files: in such a case,
  *  the file earliest in the search path is selected, and the other files are
@@ -2867,7 +2867,7 @@ typedef struct PHYSFS_Stat
  *
  * This function will never follow symbolic links. If you haven't enabled
  *  symlinks with PHYSFS_permitSymbolicLinks(), stat'ing a symlink will be
- *  treated like stat'ing a non-existant file. If symlinks are enabled,
+ *  treated like stat'ing a non-existent file. If symlinks are enabled,
  *  stat'ing a symlink will give you information on the link itself and not
  *  what it points to.
  *

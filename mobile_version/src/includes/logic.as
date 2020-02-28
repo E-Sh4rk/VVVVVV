@@ -1300,7 +1300,7 @@ public function controltutoriallogic(key:KeyPoll, dwgfx:dwgraphicsclass, game:ga
 		break;
 	}
 	
-	//Entity type 0 is player controled
+	//Entity type 0 is player controlled
 	for (i = 0; i < obj.nentity; i++) {
 	  if (obj.entities[i].rule == 0) {
 			if (game.press_left) {game.tapleft++; game.controllerp3++;

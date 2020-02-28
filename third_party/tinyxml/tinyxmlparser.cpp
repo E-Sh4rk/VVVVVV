@@ -835,8 +835,8 @@ TiXmlNode* TiXmlNode::Identify( const char* p, TiXmlEncoding encoding )
 	// What is this thing? 
 	// - Elements start with a letter or underscore, but xml is reserved.
 	// - Comments: <!--
-	// - Decleration: <?xml
-	// - Everthing else is unknown to tinyxml.
+	// - Declaration: <?xml
+	// - Everything else is unknown to tinyxml.
 	//
 
 	const char* xmlHeader = { "<?xml" };

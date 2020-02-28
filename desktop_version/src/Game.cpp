@@ -5043,7 +5043,7 @@ void Game::loadquick( mapclass& map, entityclass& obj, musicclass& music )
         {
             map.finalx = atoi(pText);
         }
-        else if (pKey == "finaly")
+        else if (pKey == "finally")
         {
             map.finaly = atoi(pText);
         }
@@ -5307,7 +5307,7 @@ void Game::customloadquick(std::string savfile, mapclass& map, entityclass& obj,
         {
             map.finalx = atoi(pText);
         }
-        else if (pKey == "finaly")
+        else if (pKey == "finally")
         {
             map.finaly = atoi(pText);
         }
@@ -5736,7 +5736,7 @@ void Game::savetele( mapclass& map, entityclass& obj, musicclass& music )
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finalx).c_str() ));
     msgs->LinkEndChild( msg );
 
-    msg = new TiXmlElement( "finaly" );
+    msg = new TiXmlElement( "finally" );
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finaly).c_str() ));
     msgs->LinkEndChild( msg );
 
@@ -5979,7 +5979,7 @@ void Game::savequick( mapclass& map, entityclass& obj, musicclass& music )
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finalx).c_str() ));
     msgs->LinkEndChild( msg );
 
-    msg = new TiXmlElement( "finaly" );
+    msg = new TiXmlElement( "finally" );
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finaly).c_str() ));
     msgs->LinkEndChild( msg );
 
@@ -6241,7 +6241,7 @@ void Game::customsavequick(std::string savfile, mapclass& map, entityclass& obj,
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finalx).c_str() ));
     msgs->LinkEndChild( msg );
 
-    msg = new TiXmlElement( "finaly" );
+    msg = new TiXmlElement( "finally" );
     msg->LinkEndChild( new TiXmlText( UtilityClass::String(map.finaly).c_str() ));
     msgs->LinkEndChild( msg );
 
@@ -6520,7 +6520,7 @@ void Game::loadtele( mapclass& map, entityclass& obj, musicclass& music )
         {
             map.finalx = atoi(pText);
         }
-        else if (pKey == "finaly")
+        else if (pKey == "finally")
         {
             map.finaly = atoi(pText);
         }

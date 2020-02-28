@@ -1602,7 +1602,7 @@ void Graphics::drawentities( mapclass& map, entityclass& obj, UtilityClass& help
             {
                 prect.x = obj.entities[i].xp;
                 prect.y = obj.entities[i].yp;
-                //A seperate index of colours, for simplicity
+                //A separate index of colours, for simplicity
                 if(obj.entities[i].colour==1)
                 {
                     //backbuffer.fillRect(prect, RGB(196 - (fRandom() * 64), 10, 10));
@@ -1640,7 +1640,7 @@ void Graphics::drawentities( mapclass& map, entityclass& obj, UtilityClass& help
             }
             else if (obj.entities[i].size == 8)    // Special: Moving platform, 8 tiles
             {
-				//TODO check this is correct game breaking moving paltform
+				//TODO check this is correct game breaking moving platform
                 tpoint.x = obj.entities[i].xp;
                 tpoint.y = obj.entities[i].yp;
                 drawRect = sprites_rect;
@@ -2553,7 +2553,7 @@ void Graphics::drawtowerentities( mapclass& map, entityclass& obj, UtilityClass&
             {
                 prect.x = obj.entities[i].xp;
                 prect.y = obj.entities[i].yp-map.ypos;
-                //A seperate index of colours, for simplicity
+                //A separate index of colours, for simplicity
                 if(obj.entities[i].colour==1)
                 {
                     FillRect(backBuffer, prect, getRGB(196 - (fRandom() * 64), 10, 10));
@@ -2662,7 +2662,7 @@ void Graphics::drawtowerbackground( mapclass& map )
     else
     {
         //just update the bottom
-        //TODO SCOLL
+        //TODO SCROLL
         //towerbuffer.scroll(0, -map.bscroll);
         ScrollSurface(towerbuffer, 0, -map.bscroll);
         for (int i = 0; i < 40; i++)

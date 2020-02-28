@@ -55,7 +55,7 @@ void scriptclass::load(std::string t)
           scriptend=customscript.size();
         }
 
-        //Ok, we've got the relavent script segment, we do a pass to assess it, then run it!
+        //Ok, we've got the relevant script segment, we do a pass to assess it, then run it!
         int customcutscenemode=0;
         for(int i=scriptstart; i<scriptend; i++){
           tokenize(script.customscript[i]);

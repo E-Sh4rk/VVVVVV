@@ -9,7 +9,7 @@ volatile int speed_counter=0;
 void increment_speed_counter(){speed_counter++;}
 END_OF_FUNCTION(increment_speed_counter);
 
-PALLETE dummypal;
+PALETTE dummypal;
 BITMAP *buffer, *page[3];
 BITMAP *tiles[3000];
 

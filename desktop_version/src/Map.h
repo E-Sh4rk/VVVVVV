@@ -125,7 +125,7 @@ public:
     int bscroll;
     //final level navigation
     int finalx;
-    int finaly;
+    int finally;
     bool finalmode;
     bool finalstretch;
 

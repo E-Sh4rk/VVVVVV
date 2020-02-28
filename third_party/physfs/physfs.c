@@ -2062,7 +2062,7 @@ static int verifyPath(DirHandle *h, char **_fname, int allowMissing)
             {
                 /*
                  * We need to clear it if it's the last element of the path,
-                 *  since this might be a non-existant file we're opening
+                 *  since this might be a non-existent file we're opening
                  *  for writing...
                  */
                 if ((end == NULL) || (allowMissing))
@@ -2087,7 +2087,7 @@ static int doMkdir(const char *_dname, char *dname)
     char *start;
     char *end;
     int retval = 0;
-    int exists = 1;  /* force existance check on first path element. */
+    int exists = 1;  /* force existence check on first path element. */
 
     BAIL_IF_ERRPASS(!sanitizePlatformIndependentPath(_dname, dname), 0);
 
@@ -2103,7 +2103,7 @@ static int doMkdir(const char *_dname, char *dname)
         if (end != NULL)
             *end = '\0';
 
-        /* only check for existance if all parent dirs existed, too... */
+        /* only check for existence if all parent dirs existed, too... */
         if (exists)
         {
             PHYSFS_Stat statbuf;
@@ -2327,7 +2327,7 @@ char **PHYSFS_enumerateFiles(const char *path)
 
 
 /*
- * Broke out to seperate function so we can use stack allocation gratuitously.
+ * Broke out to separate function so we can use stack allocation gratuitously.
  */
 static PHYSFS_EnumerateCallbackResult enumerateFromMountPoint(DirHandle *i,
                                     const char *arcfname,

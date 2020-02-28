@@ -1998,7 +1998,7 @@ void gameinput_(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
     }
 #endif
 
-    //Entity type 0 is player controled
+    //Entity type 0 is player controlled
     for (int ie = 0; ie < obj.nentity; ++ie)
     {
         if (obj.entities[ie].rule == 0)

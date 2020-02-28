@@ -810,7 +810,7 @@ int __PHYSFS_platformSeek(void *opaque, PHYSFS_uint64 pos)
     HANDLE h = (HANDLE) opaque;
     const PHYSFS_sint64 spos = (PHYSFS_sint64) pos;
     BAIL_IF(!winSetFilePointer(h,spos,NULL,FILE_BEGIN), errcodeFromWinApi(), 0);
-    return 1;  /* No error occured */
+    return 1;  /* No error occurred */
 } /* __PHYSFS_platformSeek */
 
 

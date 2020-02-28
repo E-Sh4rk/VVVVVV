@@ -18,6 +18,26 @@ void gamecompletelogic2(Graphics& dwgfx, Game& game, entityclass& obj,  musiccla
 
 void towerlogic(Graphics& dwgfx, Game& game, entityclass& obj,  musicclass& music, mapclass& map, UtilityClass& help);
 
-void gamelogic(Graphics& dwgfx, Game& game, entityclass& obj,  musicclass& music, mapclass& map, UtilityClass& help);
+struct SpriteState {
+    int x;
+    int y;
+    int w;
+    int h;
+    int df;
+};
+
+struct SWNState {
+    bool swn;
+    bool playable;
+    bool dead;
+    int timer;
+    SpriteState player;
+    int proj_n;
+    SpriteState proj[50];
+    int lines_n;
+    SpriteState lines[2];
+};
+
+SWNState gamelogic(Graphics& dwgfx, Game& game, entityclass& obj,  musicclass& music, mapclass& map, UtilityClass& help);
 
 #endif /* LOGIC_H */

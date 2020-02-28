@@ -28,6 +28,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 
 scriptclass script;
 
@@ -43,6 +44,16 @@ Game game;
 KeyPoll key;
 mapclass map;
 entityclass obj;
+
+void default_framerate(Game& game) {
+    switch(game.slowdown){
+      case 30: game.gameframerate=34; break;
+      case 24: game.gameframerate=41; break;
+      case 18: game.gameframerate=55; break;
+      case 12: game.gameframerate=83; break;
+      default: game.gameframerate=34; break;
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -198,13 +209,7 @@ int main(int argc, char *argv[])
 		if(game.usingmmmmmm==1) music.usingmmmmmm=true;
     if (game.slowdown == 0) game.slowdown = 30;
 
-    switch(game.slowdown){
-      case 30: game.gameframerate=34; break;
-      case 24: game.gameframerate=41; break;
-      case 18: game.gameframerate=55; break;
-      case 12: game.gameframerate=83; break;
-      default: game.gameframerate=34; break;
-    }
+    default_framerate(game);
 
 		//Check to see if you've already unlocked some achievements here from before the update
 		if (game.swnbestrank > 0){
@@ -256,9 +261,7 @@ int main(int argc, char *argv[])
 		//map.final_colormode = true;
 		//map.final_mapcol = 0;
 		//map.final_colorframe = 0;
-
 		//game.starttest(obj, music);
-
     game.savex = 5 * 8; game.savey = 15 * 8; game.saverx = 41; game.savery = 52;
     game.savegc = 0; game.savedir = 1;
     game.state = 0; game.deathseq = -1; game.lifeseq = 10;
@@ -267,6 +270,17 @@ int main(int argc, char *argv[])
 		//music.play(1);
 		*/
     //End hack here ----
+    bool console_mode = false;
+    if (argc >= 2 && strcmp(argv[argc-1], "-training") == 0)
+    {
+        game.gameframerate=0;
+        game.gamestate=GAMEMODE;
+        game.start(obj,music);
+        script.startgamemode(1, key, graphics, game, map, obj, help, music);
+        map.warpto(119, 108, obj.getplayer(), 19, 10, graphics, game, obj, music);
+        console_mode = true;
+    }
+	// ---------
 
     volatile Uint32 time, timePrev = 0;
     game.infocus = true;
@@ -347,7 +361,7 @@ int main(int argc, char *argv[])
 		}*/
 
         game.infocus = key.isActive;
-        if(!game.infocus)
+        if(!game.infocus && !console_mode)
         {
             if(game.getGlobalSoundVol()> 0)
             {
@@ -418,12 +432,97 @@ int main(int argc, char *argv[])
                             script.run(key, graphics, game, map, obj, help, music);
                         }
 
-                        gameinput(key, graphics, game, map, obj, help, music);
-                        //}
+                        if (key.isDown(SDLK_EQUALS))
+                            default_framerate(game);
+                        if (key.isDown(SDLK_9))
+                            game.gameframerate = 90;
+                        if (key.isDown(SDLK_8))
+                            game.gameframerate = 80;
+                        if (key.isDown(SDLK_7))
+                            game.gameframerate = 70;
+                        if (key.isDown(SDLK_6))
+                            game.gameframerate = 60;
+                        if (key.isDown(SDLK_5))
+                            game.gameframerate = 50;
+                        if (key.isDown(SDLK_4))
+                            game.gameframerate = 40;
+                        if (key.isDown(SDLK_3))
+                            game.gameframerate = 30;
+                        if (key.isDown(SDLK_2))
+                            game.gameframerate = 20;
+                        if (key.isDown(SDLK_1))
+                            game.gameframerate = 10;
+                        if (key.isDown(SDLK_0))
+                            game.gameframerate = 0;
+                        if (key.isDown(SDLK_o)) {
+                            console_mode = true;
+                            //cin.ignore(std::numeric_limits<std::streamsize>::max());
+                        }
+                        if (key.isDown(SDLK_p)) {
+                            console_mode = false;
+                            //cin.ignore(std::numeric_limits<std::streamsize>::max());
+                        }
+                        bool left = false;
+                        bool right = false;
+                        bool suicide = false;
+                        if (console_mode) {
+                            std::string line;
+                            std::getline(std::cin, line);
+                            if (line.length() > 0) {
+                                left = line[0] == 'l';
+                                right = line[0] == 'r';
+                                suicide = line[0] == 's';
+                            }
+                            gameinput_manual(left, right, suicide, key, graphics, game, map, obj, help, music);
+                        }
+                        else
+                            gameinput(key, graphics, game, map, obj, help, music);
                         gamerender(graphics,map, game,  obj, help);
-                        gamelogic(graphics, game,obj, music, map,  help);
+                        SWNState swnstate = gamelogic(graphics, game,obj, music, map,  help);
+                        if (console_mode) {
+                            if (swnstate.swn) {
+                                printf("{ ");
+                                printf("\"playable\":%d,", swnstate.playable);
+                                printf("\"dead\":%d,", swnstate.dead);
+                                printf("\"timer\":%i,", swnstate.timer);
+                                printf("\"player\": {\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i},", swnstate.player.x,
+                                    swnstate.player.y, swnstate.player.w, swnstate.player.h, swnstate.player.df);
+                                printf("\"lines\":[");
+                                for (int i = 0; i < swnstate.lines_n; i++) {
+                                    if (i > 0)
+                                        printf(",");
+                                    printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.lines[i].x,
+                                    swnstate.lines[i].y, swnstate.lines[i].w, swnstate.lines[i].h, swnstate.lines[i].df);
+                                }
+                                printf("],\"proj\":[");
+                                for (int i = 0; i < swnstate.proj_n; i++) {
+                                    if (i > 0)
+                                        printf(",");
+                                    printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.proj[i].x,
+                                    swnstate.proj[i].y, swnstate.proj[i].w, swnstate.proj[i].h, swnstate.proj[i].df);
+                                }
+                                printf("] }\n");
+                            }
+                            else
+                                printf("NO_SWN\n");
 
-
+                            // Print a message to indicate that manual mode is on
+                            FillRect(graphics.backBuffer, -8, 227, 336, 12, 0x00000000);
+                            graphics.Print( 20, 228, "Frame-by-frame input mode is ON", 160 - (help.glow/2), 160 - (help.glow/2), 160 - (help.glow/2), true);
+                            if (left) {
+                                SDL_Rect drawRect = graphics.tiles_rect;
+                                drawRect.x += 300;
+                                drawRect.y += 227;
+                                BlitSurfaceColoured(graphics.tiles[1167],NULL, graphics.backBuffer, &drawRect, graphics.ct);
+                            }
+                            if (right) {
+                                SDL_Rect drawRect = graphics.tiles_rect;
+                                drawRect.x += 310;
+                                drawRect.y += 227;
+                                BlitSurfaceColoured(graphics.tiles[1166],NULL, graphics.backBuffer, &drawRect, graphics.ct);
+                            }
+                            graphics.render();
+                        }
                     }
                     break;
                 case MAPMODE:

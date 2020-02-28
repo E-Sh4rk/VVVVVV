@@ -12,6 +12,9 @@
 void titleinput(KeyPoll& key, Graphics& dwgfx, mapclass& map, Game& game,
                 entityclass& obj, UtilityClass& help, musicclass& music);
 
+void gameinput_manual(bool left, bool right, bool suicide, KeyPoll& key, Graphics& dwgfx,
+             Game& game, mapclass& map, entityclass& obj, UtilityClass& help, musicclass& music);
+
 void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                entityclass& obj, UtilityClass& help, musicclass& music);
 

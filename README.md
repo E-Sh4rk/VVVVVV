@@ -1,3 +1,11 @@
+
+This is a fork of [VVVVVV](https://github.com/TerryCavanagh/VVVVVV/).
+This fork adds a console interface to the game in order to be able to control it from an external program.
+The purpose of this fork is to allow the creation of an external artificial intelligence for the Super Gravitron (more info coming soon).
+
+Original Readme
+===============
+
 This is the source code to VVVVVV, version 2.0+. For more context about this release, see the [announcement](http://distractionware.com/blog/2020/01/vvvvvv-is-now-open-source/) on Terry's blog!
 
 License

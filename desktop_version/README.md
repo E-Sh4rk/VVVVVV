@@ -1,3 +1,9 @@
+Note for this fork
+------------------
+
+If you have Windows, you should modify the project settings under VS2010 in order to make the program open a console:  
+`Linker -> System -> Console (/SUBSYSTEM:CONSOLE)`
+
 How to Build
 ------------
 VVVVVV's official desktop versions are built with the following environments:

@@ -1798,20 +1798,20 @@ SDL_assert(0 && "Remove open level dir");
         script.startgamemode(game.mainmenu, key, dwgfx, game, map, obj, help, music);
 }
 
-void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
+void gameinput_(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                entityclass& obj, UtilityClass& help, musicclass& music)
 {
     //TODO mouse input
     //game.mx = (mouseX / 2);
     //game.my = (mouseY / 2);
 
-    if(!script.running)
+    /*if(!script.running)
     {
         game.press_left = false;
         game.press_right = false;
         game.press_action = false;
         game.press_map = false;
-    }
+    }*/
 /*
     if (game.recording == 2 && !game.playbackfinished)
     {
@@ -1871,7 +1871,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
     }
     else
     { */
-        if(!script.running)
+        /*if(!script.running)
         {
             if (key.isDown(KEYBOARD_LEFT) || key.isDown(KEYBOARD_a) || key.controllerWantsLeft(false))
             {
@@ -1890,7 +1890,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
 			{
 				game.press_map = true;
 			}
-        }
+        }*/
     //}
 
     if (game.advancetext)
@@ -2162,10 +2162,10 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                     if (map.extrarow) dwgfx.menuoffset -= 10;
                 }
 
-                if (key.keymap[SDLK_r] && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
+                /*if (key.keymap[SDLK_r] && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
                 {
                 	game.deathseq = 30;
-                }
+                }*/
 
                 if (game.press_left)
                 {
@@ -2264,6 +2264,64 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                 }
             }
         }
+    }
+}
+
+void gameinput_manual(bool left, bool right, bool suicide, KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
+               entityclass& obj, UtilityClass& help, musicclass& music) {
+
+    if(!script.running)
+    {
+        game.press_left = false;
+        game.press_right = false;
+        game.press_action = false;
+        game.press_map = false;
+        if (left)
+            game.press_left = true;
+        if (right)
+            game.press_right = true;
+        if (false)
+            game.press_action = true;
+        if (false)
+            game.press_map = true;
+    }
+    gameinput_(key, dwgfx, game, map, obj, help, music);
+	if (suicide && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
+    {
+        game.deathseq = 30;
+    }
+}
+
+void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
+               entityclass& obj, UtilityClass& help, musicclass& music) {
+    if(!script.running)
+    {
+        game.press_left = false;
+        game.press_right = false;
+        game.press_action = false;
+        game.press_map = false;
+        if (key.isDown(KEYBOARD_LEFT) || key.isDown(KEYBOARD_a) || key.controllerWantsLeft(false))
+        {
+            game.press_left = true;
+        }
+        if (key.isDown(KEYBOARD_RIGHT) || key.isDown(KEYBOARD_d) || key.controllerWantsRight(false))
+        {
+            game.press_right = true;
+        }
+        if (key.isDown(KEYBOARD_z) || key.isDown(KEYBOARD_SPACE) || key.isDown(KEYBOARD_v)
+                || key.isDown(KEYBOARD_UP) || key.isDown(KEYBOARD_DOWN) || key.isDown(KEYBOARD_w) || key.isDown(KEYBOARD_s)|| key.isDown(game.controllerButton_flip))
+        {
+            game.press_action = true;
+        };
+        if (key.isDown(KEYBOARD_ENTER) || key.isDown(SDLK_KP_ENTER) || key.isDown(game.controllerButton_map)  )
+        {
+            game.press_map = true;
+        }
+    }
+    gameinput_(key, dwgfx, game, map, obj, help, music);
+	if (key.keymap[SDLK_r] && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
+    {
+        game.deathseq = 30;
     }
 }
 

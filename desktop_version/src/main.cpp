@@ -276,7 +276,8 @@ int main(int argc, char *argv[])
         game.gameframerate=0;
         game.gamestate=GAMEMODE;
         game.start(obj,music);
-        script.startgamemode(1, key, graphics, game, map, obj, help, music);
+        // GameMode 1 fails to load the super gravitron when tsave.vvv exists, so we start GameMode 11 instead
+        script.startgamemode(11, key, graphics, game, map, obj, help, music);
         map.warpto(119, 108, obj.getplayer(), 19, 10, graphics, game, obj, music);
         console_mode = true;
     }

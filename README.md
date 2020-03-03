@@ -8,9 +8,8 @@ Only `desktop_version` has been modded. The following controls have been added t
 - The numerical keys (`0 1 2 3 4 5 6 7 8 9`) change the framerate. The key `=` resets the framerate to default.
 - The key `o` activates the frame-by-frame input mode. The key `p` disables it.
 - When the frame-by-frame input mode is activated, the game cannot be controlled anymore using the keyboard.
-Instead, the input must be specified in the console. You can type `∅`, `l`, `r` or `s` (respectively: no move, left, right, suicide).
-Each time you enter such a command, the game runs for one frame, and the new state of the game is printed in the console using the JSON format
-(only for the Gravitron).
+Instead, the input must be specified in the console. You can type `w`, `l`, `r` or `s` (respectively: wait, left, right, suicide). If you enter many of those characters before hitting enter, they will all be played successively.
+Each time you enter such a command, the game runs for the corresponding number of frames, and the new state of the game is printed in the console using the JSON format (only for the Gravitron).
 You can disable the frame-by-frame input mode by pressing the `p` key in the game while it is running, but it is only posible if the console is controlled by an external program (otherwise you would have to press `p` in the game and to press enter in the console at the same time).
 
 Original Readme

@@ -285,6 +285,8 @@ int main(int argc, char *argv[])
     game.infocus = true;
     key.isActive = true;
 
+    std::string input_line;
+    int input_line_i = 0;
     while(!key.quitProgram)
     {
 		//gameScreen.ClearScreen(0x00);
@@ -465,12 +467,15 @@ int main(int argc, char *argv[])
                         bool right = false;
                         bool suicide = false;
                         if (console_mode) {
-                            std::string line;
-                            std::getline(std::cin, line);
-                            if (line.length() > 0) {
-                                left = line[0] == 'l';
-                                right = line[0] == 'r';
-                                suicide = line[0] == 's';
+                            if (input_line.length() <= input_line_i) {
+                                std::getline(std::cin, input_line);
+                                input_line_i = 0;
+                            }
+                            if (input_line.length() > input_line_i) {
+                                left = input_line[input_line_i] == 'l';
+                                right = input_line[input_line_i] == 'r';
+                                suicide = input_line[input_line_i] == 's';
+                                input_line_i++;
                             }
                             gameinput_manual(left, right, suicide, key, graphics, game, map, obj, help, music);
                         }
@@ -479,31 +484,33 @@ int main(int argc, char *argv[])
                         gamerender(graphics,map, game,  obj, help);
                         SWNState swnstate = gamelogic(graphics, game,obj, music, map,  help);
                         if (console_mode) {
-                            if (swnstate.swn) {
-                                printf("{ ");
-                                printf("\"playable\":%d,", swnstate.playable);
-                                printf("\"dead\":%d,", swnstate.dead);
-                                printf("\"timer\":%i,", swnstate.timer);
-                                printf("\"player\": {\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i},", swnstate.player.x,
-                                    swnstate.player.y, swnstate.player.w, swnstate.player.h, swnstate.player.df);
-                                printf("\"lines\":[");
-                                for (int i = 0; i < swnstate.lines_n; i++) {
-                                    if (i > 0)
-                                        printf(",");
-                                    printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.lines[i].x,
-                                    swnstate.lines[i].y, swnstate.lines[i].w, swnstate.lines[i].h, swnstate.lines[i].df);
+                            if (input_line.length() <= input_line_i) { // We only print the state after having performed all the moves
+                                if (swnstate.swn) {
+                                    printf("{ ");
+                                    printf("\"playable\":%d,", swnstate.playable);
+                                    printf("\"dead\":%d,", swnstate.dead);
+                                    printf("\"timer\":%i,", swnstate.timer);
+                                    printf("\"player\": {\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i},", swnstate.player.x,
+                                        swnstate.player.y, swnstate.player.w, swnstate.player.h, swnstate.player.df);
+                                    printf("\"lines\":[");
+                                    for (int i = 0; i < swnstate.lines_n; i++) {
+                                        if (i > 0)
+                                            printf(",");
+                                        printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.lines[i].x,
+                                        swnstate.lines[i].y, swnstate.lines[i].w, swnstate.lines[i].h, swnstate.lines[i].df);
+                                    }
+                                    printf("],\"proj\":[");
+                                    for (int i = 0; i < swnstate.proj_n; i++) {
+                                        if (i > 0)
+                                            printf(",");
+                                        printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.proj[i].x,
+                                        swnstate.proj[i].y, swnstate.proj[i].w, swnstate.proj[i].h, swnstate.proj[i].df);
+                                    }
+                                    printf("] }\n");
                                 }
-                                printf("],\"proj\":[");
-                                for (int i = 0; i < swnstate.proj_n; i++) {
-                                    if (i > 0)
-                                        printf(",");
-                                    printf("{\"x\":%i,\"y\":%i,\"w\":%i,\"h\":%i,\"df\":%i}", swnstate.proj[i].x,
-                                    swnstate.proj[i].y, swnstate.proj[i].w, swnstate.proj[i].h, swnstate.proj[i].df);
-                                }
-                                printf("] }\n");
+                                else
+                                    printf("NO_SWN\n");
                             }
-                            else
-                                printf("NO_SWN\n");
 
                             // Print a message to indicate that manual mode is on
                             FillRect(graphics.backBuffer, -8, 227, 336, 12, 0x00000000);

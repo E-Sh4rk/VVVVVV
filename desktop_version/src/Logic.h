@@ -28,7 +28,7 @@ struct SpriteState {
 
 struct SWNState {
     bool swn;
-    bool playable;
+    int playable;
     bool dead;
     int timer;
     SpriteState player;

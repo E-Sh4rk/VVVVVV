@@ -1560,27 +1560,31 @@ SWNState gamelogic(Graphics& dwgfx, Game& game, entityclass& obj,  musicclass& m
         int n = 0;
         int m = 0;
         for (int i = obj.nentity - 1; i >= 0;  i--) {
-            if(obj.entities[i].type == 23) { // SWN enemies
-                swnstate.proj[n].df = obj.entities[i].drawframe;
+            if(obj.entities[i].type == 23 && n < 50) { // SWN enemies
                 swnstate.proj[n].x = obj.entities[i].xp + obj.entities[i].cx;
                 swnstate.proj[n].y = obj.entities[i].yp + obj.entities[i].cy;
                 swnstate.proj[n].w = obj.entities[i].w;
                 swnstate.proj[n].h = obj.entities[i].h;
+                swnstate.proj[n].df = obj.entities[i].drawframe;
                 n++;
             }
-            else if(obj.entities[i].type == 9)
+            else if(obj.entities[i].type == 9 && m < 2)
             {
-                swnstate.lines[m].df = obj.entities[i].drawframe;
                 swnstate.lines[m].x = obj.entities[i].xp + obj.entities[i].cx;
                 swnstate.lines[m].y = obj.entities[i].yp + obj.entities[i].cy;
                 swnstate.lines[m].w = obj.entities[i].w;
                 swnstate.lines[m].h = obj.entities[i].h;
+                swnstate.lines[m].df = obj.entities[i].drawframe;
                 m++;
             }
         }
         swnstate.proj_n = n;
         swnstate.lines_n = m;
-        swnstate.playable = game.swngame == 1 /* Super Gravitron */ || game.swngame == 0 /* Intermission */; // = 7 when loading at the beginning
+        swnstate.playable = 0;
+        if (game.swngame == 1) /* Super Gravitron */ // = 7 when loading at the beginning
+            swnstate.playable = 1;
+        else if (game.swngame == 0) /* Intermission */
+            swnstate.playable = 2;
     }
     else
         swnstate.swn = false;

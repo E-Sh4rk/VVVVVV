@@ -5,6 +5,7 @@ The purpose of this fork is to allow the creation of an external artificial inte
 
 Only `desktop_version` has been modded. The following controls have been added to the game:
 
+- If you start the game with the `-training` flag, it will directly start the Super Gravitron and increase the framerate.
 - The numerical keys (`0 1 2 3 4 5 6 7 8 9`) change the framerate. The key `=` resets the framerate to default.
 - The key `o` activates the frame-by-frame input mode. The key `p` disables it.
 - When the frame-by-frame input mode is activated, the game cannot be controlled anymore using the keyboard.

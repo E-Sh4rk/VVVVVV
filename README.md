@@ -13,6 +13,15 @@ Instead, the input must be specified in the console. You can type `w`, `l`, `r` 
 Each time you enter such a command, the game runs for the corresponding number of frames, and the new state of the game is printed in the console using the JSON format (only for the Gravitron).
 You can disable the frame-by-frame input mode by pressing the `p` key in the game while it is running, but it is only posible if the console is controlled by an external program (otherwise you would have to press `p` in the game and to press enter in the console at the same time).
 
+License
+-------
+The license of the [original VVVVVV source code](https://github.com/TerryCavanagh/VVVVVV/) applies to this fork.
+You can freely modify and distribute the content of this fork as long as it respects the original license (available in `LICENSE.md`)
+as well as the following condition:
+
+- You should not remove the textual indication when the frame-by-frame input mode is on,
+as it would hide the fact that the game is being controlled by an external program and thus could harm the speedrunning community.
+
 Original Readme
 ===============
 

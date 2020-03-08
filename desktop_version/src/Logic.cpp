@@ -1560,6 +1560,8 @@ SWNState gamelogic(Graphics& dwgfx, Game& game, entityclass& obj,  musicclass& m
         int n = 0;
         int m = 0;
         for (int i = obj.nentity - 1; i >= 0;  i--) {
+            if(!obj.entities[i].active)
+                continue;
             if(obj.entities[i].type == 23 && n < 50) { // SWN enemies
                 swnstate.proj[n].x = obj.entities[i].xp + obj.entities[i].cx;
                 swnstate.proj[n].y = obj.entities[i].yp + obj.entities[i].cy;

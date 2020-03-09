@@ -1,7 +1,16 @@
 Note for this fork
 ------------------
 
-If you have Windows, you should modify the project settings under VS2010 in order to make the program open a console:  
+To build this fork on Windows:
+
+```
+# Put the SDL2 and SDL2_mixer folders in C:\libs\
+mkdir flibitBuild
+cd flibitBuild
+cmake -G "Visual Studio 10 2010" .. -DSDL2_INCLUDE_DIRS="C:\libs\SDL2-2.0.10\include;C:\libs\SDL2_mixer-2.0.4\include" -DSDL2_LIBRARIES="C:\libs\SDL2-2.0.10\lib\x86\SDL2.lib;C:\libs\SDL2-2.0.10\lib\x86\SDL2main.lib;C:\libs\SDL2_mixer-2.0.4\lib\x86\SDL2_mixer.lib"
+```
+
+Then, you should modify the project settings under VS2010 in order to make the program open a console:  
 `Linker -> System -> Console (/SUBSYSTEM:CONSOLE)`
 
 How to Build

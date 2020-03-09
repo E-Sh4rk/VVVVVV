@@ -1,7 +1,9 @@
 
 This is a fork of [VVVVVV](https://github.com/TerryCavanagh/VVVVVV/).
 This fork adds a console interface to the game in order to be able to control it from an external program.
-The purpose of this fork is to allow the creation of an external artificial intelligence for the Super Gravitron (more info coming soon).
+The purpose of this fork is to allow the creation of an external artificial intelligence for the Super Gravitron.
+You can find two such artificial intelligence here:  
+[https://github.com/E-Sh4rk/VVVVVV-AI](https://github.com/E-Sh4rk/VVVVVV-AI)
 
 Only `desktop_version` has been modded. The following controls have been added to the game:
 
